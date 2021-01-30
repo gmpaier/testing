@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+</head>
+<body>
+        <h1>Rock Paper Scissors: Shoot!</h1>
+        <br>
+
+        <button type="button" class="btn btn-primary" id="rockButton" onclick="rock()">Rock</button>
+        <button type="button" class="btn btn-success" id="paperButton" onclick="paper()">Paper</button>
+        <button type="button" class="btn btn-danger" id="scissorButton" onclick="scissor()">Scissor</button>
+        <br>
+        <br>
+
+        <!--These tags display the results-->
+        <p id="move0"></p>
+        <p id="move1"></p>
+        <p id="move2"></p>
+        <p id="move3"></p>
+        <p id="move4"></p>
+        <p id="move5"></p>
+        <p id="move6"></p>
+        <p id="move7"></p>
+        <p id="move8"></p>
+        <p id="move9"></p>
+        <strong><p id="finalTally"></p></strong>
+        
+    <script>
+        
+
+        var player; /*holds user's move*/
+        var computer; /*hold computer's move*/
+        
+        var moves = ["Rock", "Paper", "Scissors"];
+        var results = ["Tied game.", "User wins.", "Computer wins."];
+        var r; /*index variable for results array*/
+
+
+        var wins=0;
+        var loses=0;
+        var ties=0;
+        
+        var i=0; /*turn index variable*/
+        
+        /*Functions bellow trigger when corresponding button is pressed*/
+        function rock() {
+            player = 0;
+            compMove();
+            whoWon();
+        }
+
+        function paper() {
+            player = 1;
+            compMove();
+            whoWon();
+        }
+
+        function scissor() {
+            player = 2;
+            compMove();
+            whoWon();
+        }
+
+        /*rng for computer move*/ 
+        function compMove() {
+            computer = Math.floor(Math.random()*3);
+        }
+
+        /*Calculates winner for given turn*/ 
+        function whoWon() {
+            if (player === computer){
+                ties++;
+                r = 0;
+            }
+            else if (player === ((computer+1)%3)){
+                wins++;
+                r = 1;
+            }
+            else{
+                loses++;
+                r = 2;
+            }
+            printGame();
+        }
+
+        /*prints results of current round, increments i by 1, checks for end game condition of ten turns*/
+        function printGame() {
+            document.getElementById(("move"+i)).innerHTML = (i+1) + ". User played " + moves[player] + ". Computer played " + moves[computer] + ". " + results[r];
+            i++;
+
+            if (i===10){
+            endGame();
+            }
+            else{}
+        }
+
+        
+        /*prints final results of all games. disables buttons for user input*/
+        function endGame() {
+            document.getElementById("rockButton").disabled = true;
+            document.getElementById("paperButton").disabled = true;
+            document.getElementById("scissorButton").disabled = true;
+            
+            if (wins === loses){
+                r = 0;
+            }
+            else if (wins > loses){
+                r = 1;
+            }
+            else {
+                r = 2;
+            }
+
+            document.getElementById("finalTally").innerHTML = "User wins " + wins + " times. Computer wins " + loses + " times. There were " + ties + " ties. " + results[r];
+            
+        }
+        
+    </script>
+</body> 
+</html>
