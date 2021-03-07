@@ -46,8 +46,7 @@ function getMusic (){
     var requestUrl = "https://45fedfc9.api.tunefind.com/api/v2/movie/" + id + "?id-type=tmdb";
     fetch("https://45fedfc9.api.tunefind.com/api/v2/show/alias", {
         headers: {
-          Authorization: "Basic NDVmZWRmYzkwNjQ1MzEyZjFlNzJkYzZjNGIzNTk5ZjY6MDYxYWY4Mzg5ZmU1MTQ0ZjI0YTE0Y2MxOGMyZmRkNTI=",
-          'Access-Control-Allow-Origin': "https://gmpaier.github.io/testing/CORS-test/"
+          Authorization: "Basic NDVmZWRmYzkwNjQ1MzEyZjFlNzJkYzZjNGIzNTk5ZjY6MDYxYWY4Mzg5ZmU1MTQ0ZjI0YTE0Y2MxOGMyZmRkNTI="
         }
       })
     .then(function (response) {
